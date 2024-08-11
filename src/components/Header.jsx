@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleMenu } from "../utils/AppSlice";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { YOUTUBE_SEARCH_API } from "../constants";
 import { cacheResults } from "../utils/searchSlice";
 
@@ -10,6 +10,7 @@ const Header = () => {
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const dispatch = useDispatch();
+  const navigation = useNavigate();
 
   const searchCache = useSelector((store) => store.search);
   /*
@@ -64,6 +65,16 @@ const Header = () => {
     );
   };
 
+  const handleSuggestionClick = (suggestion) => {
+    setSearchQeary(suggestion); // Update input field with clicked suggestion
+    setShowSuggestions(false); // Hide suggestions dropdown
+  };
+
+  const handleSearch = () => {
+    console.log("searching...");
+    navigation(`/search/${searchQuery}`);
+  };
+
   return (
     <header className="flex bg-black h-16 lg:px-5 text-white items-center justify-between sticky top-0 z-50 px-2">
       <div className="flex items-center lg:gap-4 gap-1 h-6">
@@ -79,18 +90,23 @@ const Header = () => {
 
       <div className="flex items-center h-8 flex-col">
         <div className="flex items-center border-2 border-gray-600 rounded-full p-1 px-4 hover:border-gray-400">
-          <input
-            type="text"
-            className="bg-transparent w-[150px] sm:w-[300px] lg:w-[500px] h-8  text-sm focus:outline-none"
-            placeholder="search"
-            value={searchQuery}
-            onChange={(e) => setSearchQeary(e.target.value)}
-            onFocus={() => setShowSuggestions(true)}
-            onBlur={() => setShowSuggestions(false)}
-          />
-          <div className="text-white w-5 cursor-pointer">
-            <i className="fa-solid fa-magnifying-glass"></i>
-          </div>
+          <form onSubmit={handleSearch}>
+            <input
+              type="text"
+              className="bg-transparent w-[150px] sm:w-[300px] lg:w-[500px] h-8  text-sm focus:outline-none"
+              placeholder="search"
+              value={searchQuery}
+              onChange={(e) => setSearchQeary(e.target.value)}
+              onFocus={() => setShowSuggestions(true)}
+              // onBlur={() => setTimeout(() => setShowSuggestions(false), 100)} // Updated this line
+            />
+            <Link
+              to={`/search/${searchQuery}`}
+              className="text-white w-5 cursor-pointer"
+            >
+              <i className="fa-solid fa-magnifying-glass"></i>
+            </Link>
+          </form>
         </div>
 
         {/* suggestion section   */}
@@ -102,6 +118,7 @@ const Header = () => {
                   <li
                     key={s}
                     className="p-2 hover:bg-[#484646] cursor-pointer flex gap-2 items-center"
+                    onClick={() => handleSuggestionClick(s)} // Added onClick handler
                   >
                     <i className="fa-solid fa-magnifying-glass"></i>
                     <p>{s}</p>

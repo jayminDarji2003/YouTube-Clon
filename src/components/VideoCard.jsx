@@ -8,7 +8,7 @@ const VideoCard = ({ videoInfo }) => {
   return (
     <div className="border-2 text-white m-5 w-56 lg:w-72 rounded-lg">
       <img
-        className="text-center rounded-lg hover:scale-105"
+        className="text-center rounded-lg hover:scale-95 transition-all transform duration-300"
         src={thumbnails?.medium?.url}
         alt="Image"
       />
@@ -22,9 +22,6 @@ const VideoCard = ({ videoInfo }) => {
           <p>
             <CountFormatter count={statistics?.likeCount} name="Likes" />
           </p>
-          {/* <p>{statistics?.viewCount} Views</p>
-          <p>.</p> */}
-          {/* <p>{statistics?.likeCount} Likes</p> */}
         </div>
       </div>
     </div>

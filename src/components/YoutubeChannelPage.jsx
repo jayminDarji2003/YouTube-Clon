@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import CountFormatter from "./CountFormatter";
 
 const YoutubeChannelPage = () => {
@@ -54,8 +54,16 @@ const YoutubeChannelPage = () => {
               </div>
             </div>
           </div>
-          <p className=" mx-4 md:mx-20 lg:mx-40 font-semibold text-center">
+          <p className=" mx-4 md:mx-20 lg:mx-40 font-semibold text-center flex flex-col gap-5">
             <b>Description :</b> {channelInfo?.snippet?.description}
+            <span>
+              <Link
+                to={`/playlist/${channelId}`}
+                className="font-bold p-2 rounded-md bg-white text-black"
+              >
+                View Playlist
+              </Link>
+            </span>
           </p>
         </div>
       )}
