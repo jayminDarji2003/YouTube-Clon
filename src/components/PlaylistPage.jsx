@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { YOUTUBE_API_KEY } from "../api_key";
 
 const PlaylistPage = () => {
   const [playlists, setPlaylists] = useState([]);
@@ -9,7 +10,7 @@ const PlaylistPage = () => {
 
   useEffect(() => {
     const fetchYouTubePlaylists = async () => {
-      const url = `https://youtube.googleapis.com/youtube/v3/playlists?part=snippet%2CcontentDetails&channelId=${id}&maxResults=25&key=AIzaSyAchkxS61EhuWM3ftW_614cDic0SZi6FjQ`;
+      const url = `https://youtube.googleapis.com/youtube/v3/playlists?part=snippet%2CcontentDetails&channelId=${id}&maxResults=25&key=${YOUTUBE_API_KEY}`;
 
       try {
         const response = await fetch(url);
@@ -38,9 +39,15 @@ const PlaylistPage = () => {
     return <div className="text-center mt-10 text-red-500">Error: {error}</div>;
   }
 
+  if (playlists.length === 0) {
+    return (
+      <div className="text-center mt-10 text-white">No playlist found!!</div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-black py-10 px-6">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
         {playlists.map((playlist) => (
           <div
             key={playlist.id}

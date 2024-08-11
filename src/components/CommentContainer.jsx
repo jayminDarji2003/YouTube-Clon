@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { YOUTUBE_API_KEY } from "../api_key";
 
 const Comment = ({ comment }) => {
   return (
@@ -54,7 +55,7 @@ const CommentList = ({ comments }) => {
 
 const CommentContainer = ({ videoId }) => {
   const [videoComments, setvideoComments] = useState([]);
-  const videoUrl = `https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet%2Creplies&videoId=${videoId}&key=AIzaSyAchkxS61EhuWM3ftW_614cDic0SZi6FjQ`;
+  const videoUrl = `https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet%2Creplies&videoId=${videoId}&key=${YOUTUBE_API_KEY}`;
 
   useEffect(() => {
     getComments();

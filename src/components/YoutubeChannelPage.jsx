@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import CountFormatter from "./CountFormatter";
+import { YOUTUBE_API_KEY } from "../api_key";
 
 const YoutubeChannelPage = () => {
   const [searchParams] = useSearchParams();
   const channelId = searchParams.get("v");
-  const channelUrl = `https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&id=${channelId}&key=AIzaSyAchkxS61EhuWM3ftW_614cDic0SZi6FjQ`;
+  const channelUrl = `https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&id=${channelId}&key=${YOUTUBE_API_KEY}`;
   const [channelInfo, setChannelInfo] = useState({});
 
   useEffect(() => {

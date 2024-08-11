@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
+import { YOUTUBE_API_KEY } from "../api_key";
 
 const SearchVideoPage = () => {
   const [results, setResults] = useState([]);
@@ -7,7 +8,6 @@ const SearchVideoPage = () => {
   const [error, setError] = useState(null);
   const { query } = useParams();
   console.log(query);
-  const YOUTUBE_API_KEY = "AIzaSyAchkxS61EhuWM3ftW_614cDic0SZi6FjQ";
   const YOUTUBE_SEARCH_API = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=${query}&key=`;
 
   useEffect(() => {

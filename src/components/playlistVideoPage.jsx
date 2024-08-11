@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { YOUTUBE_API_KEY } from "../api_key";
 
 const PlaylistVideoPage = () => {
   const [videos, setVideos] = useState([]);
@@ -10,7 +11,7 @@ const PlaylistVideoPage = () => {
 
   useEffect(() => {
     const fetchPlaylistVideos = async () => {
-      const url = `https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet%2CcontentDetails&maxResults=25&playlistId=${id}&key=AIzaSyAchkxS61EhuWM3ftW_614cDic0SZi6FjQ`;
+      const url = `https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet%2CcontentDetails&maxResults=25&playlistId=${id}&key=${YOUTUBE_API_KEY}`;
 
       try {
         const response = await fetch(url);
@@ -96,7 +97,6 @@ const PlaylistVideoPage = () => {
                 </p>
                 <Link
                   to={"/watch?v=" + video.contentDetails.videoId}
-                  //   href={`https://www.youtube.com/watch?v=${video.contentDetails.videoId}&list=${id}`}
                   className="text-blue-400 hover:text-blue-600 text-xs lg:text-sm mt-2 inline-block"
                 >
                   Play Video

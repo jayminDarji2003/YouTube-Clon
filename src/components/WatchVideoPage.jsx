@@ -7,12 +7,13 @@ import SuggestedVideo from "./SuggestedVideo";
 import CommentContainer from "./CommentContainer";
 import LiveChat from "./LiveChat";
 import CountFormatter from "./CountFormatter";
+import { YOUTUBE_API_KEY } from "../api_key";
 
 const WatchVideoPage = () => {
   const [searchParams] = useSearchParams();
   const dispatch = useDispatch();
   const videoId = searchParams.get("v");
-  const url = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=${videoId}&key=AIzaSyAchkxS61EhuWM3ftW_614cDic0SZi6FjQ`;
+  const url = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=${videoId}&key=${YOUTUBE_API_KEY}`;
   const [videoInfo, setVideoInfo] = useState(null);
 
   useEffect(() => {

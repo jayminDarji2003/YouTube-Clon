@@ -145,12 +145,6 @@ export const YOUTUBE_SEARCH_API = "http://suggestqueries.google.com/complete/sea
 export const YOUTUBE_CHANNEL_API = "https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&id=UC_x5XG1OV2P6uZZ5FSM9Ttw&key=" + YOUTUBE_API_KEY
 
 
-// youtube video categories 
-// https://youtube.googleapis.com/youtube/v3/videoCategories?part=snippet&regionCode=IN&key=AIzaSyAchkxS61EhuWM3ftW_614cDic0SZi6FjQ
-
-// youtube channel api 
-// https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&id=UC49EgySW0Guwy5ThcN11ehQ&key=AIzaSyAchkxS61EhuWM3ftW_614cDic0SZi6FjQ
-
 
 
 export const comments = [
